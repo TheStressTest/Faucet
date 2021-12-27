@@ -36,6 +36,7 @@ public class McAPI extends JavaPlugin {
 
             config.showJavalinBanner = false;
             config.defaultContentType = "application/json";
+            config.jsonMapper(new GsonMapper());
             config.accessManager((handler, ctx, permittedRoles) -> {
                 String key = ctx.header(Config.API_HEADER);
 
