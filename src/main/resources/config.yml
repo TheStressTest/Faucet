@@ -1,3 +1,4 @@
 auth: false
 token: CHANGE_ME
-SSL: false
+ssl:
+  enabled: false

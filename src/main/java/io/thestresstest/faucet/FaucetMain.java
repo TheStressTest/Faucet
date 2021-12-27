@@ -1,4 +1,4 @@
-package io.thestresstest.mcapi;
+package io.thestresstest.faucet;
 
 import io.thestresstest.api.v1.*;
 import io.javalin.Javalin;
@@ -7,8 +7,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import static io.javalin.apibuilder.ApiBuilder.*;
 
-
-public class McAPI extends JavaPlugin {
+public class FaucetMain extends JavaPlugin {
 
     private static Javalin app;
 
@@ -29,7 +28,7 @@ public class McAPI extends JavaPlugin {
     {
         // Get the current class loader.
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-        Thread.currentThread().setContextClassLoader(McAPI.class.getClassLoader());
+        Thread.currentThread().setContextClassLoader(FaucetMain.class.getClassLoader());
 
         // Instantiate the web server (which will now load using the plugin's class loader).
         app = Javalin.create(config -> {
@@ -63,6 +62,7 @@ public class McAPI extends JavaPlugin {
                 get("/status", StatusPath::status);
                 get("/player/players", PlayerPath::list);
                 get("/player/player/{uuid}", PlayerPath::player);
+                delete("/player/player/{uuid}", PlayerPath::kick_player);
             });
         });
 

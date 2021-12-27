@@ -1,9 +1,9 @@
-package io.thestresstest.mcapi;
+package io.thestresstest.faucet;
 
 import org.bukkit.configuration.file.FileConfiguration;
 
 public class Config {
-    private static final FileConfiguration config = McAPI.getPlugin(McAPI.class).getConfig();
+    private static final FileConfiguration config = FaucetMain.getPlugin(FaucetMain.class).getConfig();
     public static int port = config.getInt("port", 8080);
     public static final String API_HEADER = "X-API-Key";
 

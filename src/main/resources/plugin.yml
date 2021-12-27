@@ -1,7 +1,6 @@
-name: McAPI
-main: io.thestresstest.mcapi.McAPI
+name: Faucet
+main: io.thestresstest.faucet.FaucetMain
 version: 1.0
-load: STARTUP
 authors:
   - TheStressTest
 api-version: 1.18

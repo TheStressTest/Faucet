@@ -1,4 +1,4 @@
-package io.thestresstest.mcapi;
+package io.thestresstest.faucet;
 
 import com.google.gson.Gson;
 import io.javalin.plugin.json.JsonMapper;
