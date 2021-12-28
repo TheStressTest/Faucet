@@ -16,6 +16,7 @@ public class InventoryModel {
     public InventoryModel(PlayerInventory inventory) {
 
         int location = -1;
+
         for(ItemStack item : inventory.getContents()) {
             location++;
             if(item != null) {

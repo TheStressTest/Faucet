@@ -7,12 +7,15 @@ import io.thestresstest.api.v1.models.PlayerModel;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 public class PlayerPath {
     public static void list(Context ctx) {
+        Player[] players = Bukkit.getOnlinePlayers().toArray(Player[]::new);
+
+        int perPage = Integer.parseInt(Objects.requireNonNullElse(ctx.queryParam("per_page"), "10"));
+        int pages = (int) Math.ceil(players.length / perPage);
 
     }
 
@@ -22,12 +25,12 @@ public class PlayerPath {
 
     public static void player(Context ctx) {
         String uuid = ctx.pathParam("uuid");
-        if(uuid.isEmpty()) {
+        if (uuid.isEmpty()) {
             throw new BadRequestResponse("Missing parameter uuid in path.");
         }
 
         Player player = Bukkit.getPlayer(UUID.fromString(uuid));
-        if(player == null) {
+        if (player == null) {
             throw new NotFoundResponse("Player not found.");
         }
 
@@ -39,7 +42,7 @@ public class PlayerPath {
         String uuid = ctx.pathParam("uuid");
         Player player = Bukkit.getPlayer(UUID.fromString(uuid));
 
-        if(player == null) {
+        if (player == null) {
             throw new NotFoundResponse("Player not found.");
         }
 
