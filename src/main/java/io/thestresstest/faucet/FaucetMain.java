@@ -62,7 +62,7 @@ public class FaucetMain extends JavaPlugin {
                 get("/status", StatusPath::status);
                 get("/player/players", PlayerPath::list);
                 get("/player/player/{uuid}", PlayerPath::player);
-                delete("/player/player/{uuid}", PlayerPath::kick_player);
+//                delete("/player/player/{uuid}", PlayerPath::kick_player);
             });
         });
 

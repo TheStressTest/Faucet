@@ -5,6 +5,7 @@ import io.javalin.http.Context;
 import io.javalin.http.NotFoundResponse;
 import io.thestresstest.api.v1.models.PlayerModel;
 import org.bukkit.Bukkit;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import java.util.UUID;
 
@@ -29,13 +30,13 @@ public class PlayerPath {
             throw new NotFoundResponse("Player not found.");
         }
 
-        ctx.json(new PlayerModel(player));
+        ctx.json(/* new PlayerModel(player) */player);
     }
 
+    // TODO: Finish this.
     public static void kick_player(Context ctx) {
         String uuid = ctx.pathParam("uuid");
         Player player = Bukkit.getPlayer(UUID.fromString(uuid));
-
         if(player == null) {
             throw new NotFoundResponse("Player not found.");
         }
