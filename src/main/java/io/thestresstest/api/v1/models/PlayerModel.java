@@ -40,6 +40,9 @@ public class PlayerModel {
     @SerializedName("position")
     public PositionModel position;
 
+    @SerializedName("inventory")
+    public InventoryModel inventory;
+
     public PlayerModel(Player player) {
         UUID = player.getUniqueId().toString();
         userName = player.getDisplayName();
@@ -61,6 +64,7 @@ public class PlayerModel {
                 player.getLocation().getZ()
         );
 
+        inventory = new InventoryModel(player.getInventory());
 
     }
 }
