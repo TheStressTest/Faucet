@@ -15,9 +15,13 @@ public class InventoryModel {
 
     public InventoryModel(PlayerInventory inventory) {
 
-        inventory.forEach((n) -> {
-            slots.add(new SlotModel(n));
-        });
+        int location = -1;
+        for(ItemStack item : inventory.getContents()) {
+            location++;
+            if(item != null) {
+                slots.add(new SlotModel(item, location));
+            }
+        }
     }
 
 }
@@ -48,9 +52,13 @@ class SlotModel {
     @SerializedName("item")
     public ItemModel item;
 
-    public SlotModel(ItemStack slot) {
+    @SerializedName("index")
+    public int index;
+
+    public SlotModel(ItemStack slot, int inventoryLocation) {
         amount = slot.getAmount();
         item = new ItemModel(slot);
+        index = inventoryLocation;
     }
 }
 
@@ -67,7 +75,9 @@ class ItemModel {
 
     public ItemModel(ItemStack item) {
         name = item.getType().name();
-        if(item.getItemMeta().hasLore()) { lore = item.getItemMeta().getLore(); }
+        if(item.getItemMeta().hasLore()) {
+            lore = item.getItemMeta().getLore();
+        }
 
         item.getItemMeta().getEnchants().forEach((enchant, level) -> {
             enchants.add(new EnchantmentModel(enchant, level));
